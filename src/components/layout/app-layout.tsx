@@ -3,5 +3,5 @@ interface IAppLayout {
 }
 
 export function AppLayout({ children }: IAppLayout) {
-  return <div className="px-6 py-7">{children}</div>;
+  return <div className="w-[425px] mx-auto">{children}</div>;
 }
