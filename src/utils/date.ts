@@ -12,7 +12,7 @@ export const generateTimeSlots = (startHour = 10, endHour = 22) => {
   for (let hour = startHour; hour < endHour; hour++) {
     const start = formatHour(hour);
     const end = formatHour(hour + 1);
-    slots.push(`${start} - ${end}`);
+    slots.push([start, end]);
   }
   return slots;
 };
