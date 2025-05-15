@@ -13,7 +13,12 @@ export default function Dashboard() {
       <RoomNumberContainer />
       <DateDisplay />
       {reservationTimeSlots.map((times, index) => (
-        <ReservationTimeItem key={index} start={times[0]} end={times[1]} />
+        <ReservationTimeItem
+          key={index}
+          start={times[0]}
+          end={times[1]}
+          status={index % 3 === 0 ? 'available' : 'unavailable'}
+        />
       ))}
     </>
   );
