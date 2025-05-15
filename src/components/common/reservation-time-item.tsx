@@ -3,7 +3,7 @@ import {
   ReservationButton,
   UnavailableReservationButton,
 } from '@/components/common/reservation-button';
-import { PopularTag, UnpopularTag } from '@/components/common/popular-tag';
+import { UnpopularTag } from '@/components/common/popular-tag';
 
 interface IReservationTimeItem {
   start: string;
