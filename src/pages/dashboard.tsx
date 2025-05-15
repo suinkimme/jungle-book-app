@@ -1,12 +1,13 @@
 import { AppLayout } from '@/components/layout/app-layout';
-import { Profile } from '@/components/common/profile';
-import { ReservationCalendar } from '@/components/common/reservation-calendar';
+import { RoomNumberContainer } from '@/components/common/room-number-container';
 
 export default function Dashboard() {
   return (
-    <AppLayout>
-      <Profile />
-      <ReservationCalendar />
-    </AppLayout>
+    <>
+      <RoomNumberContainer />
+      <AppLayout>
+        <p>hello world</p>
+      </AppLayout>
+    </>
   );
 }
