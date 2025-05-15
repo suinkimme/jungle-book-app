@@ -5,7 +5,7 @@ import { PopularTag } from '@/components/common/popular-tag';
 export const ReservationTimeItem = () => {
   return (
     <div className="flex items-center justify-between px-6 py-5">
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1">
           <p className="text-lg font-semibold">오전 10:00</p>
           <DividerHorizontalIcon className="w-3 text-muted-foreground" />
