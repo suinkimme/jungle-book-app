@@ -1,6 +1,6 @@
 import { DividerHorizontalIcon } from '@radix-ui/react-icons';
 import { Button } from '@/components/ui/button';
-import { PopularTag } from '@/components/common/popular-tag';
+import { PopularTag, UnpopularTag } from '@/components/common/popular-tag';
 
 export const ReservationTimeItem = () => {
   return (
@@ -11,7 +11,7 @@ export const ReservationTimeItem = () => {
           <DividerHorizontalIcon className="w-3 text-muted-foreground" />
           <p className="text-lg font-semibold">오전 11:00</p>
         </div>
-        <PopularTag />
+        <UnpopularTag />
       </div>
       <Button size="sm" className="font-bold">
         예약
