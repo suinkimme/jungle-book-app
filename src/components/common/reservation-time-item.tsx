@@ -1,18 +1,21 @@
 import { DividerHorizontalIcon } from '@radix-ui/react-icons';
-import { Button } from '@/components/ui/button';
+import {
+  ReservationButton,
+  UnavailableReservationButton,
+} from '@/components/common/reservation-button';
 import { PopularTag, UnpopularTag } from '@/components/common/popular-tag';
 
-type ReservationTimeItemProps = {
+interface IReservationTimeItem {
   start: string;
   end: string;
   status: 'available' | 'unavailable';
-};
+}
 
 export const ReservationTimeItem = ({
   start,
   end,
   status,
-}: ReservationTimeItemProps) => {
+}: IReservationTimeItem) => {
   return (
     <div className="flex items-center justify-between px-6 py-5">
       <div className="flex flex-col gap-1">
@@ -23,14 +26,11 @@ export const ReservationTimeItem = ({
         </div>
         <UnpopularTag />
       </div>
-      <Button
-        size="sm"
-        className="font-bold"
-        variant={status === 'available' ? 'default' : 'outline'}
-        disabled={status === 'unavailable'}
-      >
-        예약
-      </Button>
+      {status === 'available' ? (
+        <ReservationButton />
+      ) : (
+        <UnavailableReservationButton />
+      )}
     </div>
   );
 };
