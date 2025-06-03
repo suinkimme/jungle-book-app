@@ -4,14 +4,15 @@ import { RoomNumberContainer } from '@/components/common/room-number-container';
 import { DateDisplay } from '@/components/common/date-display';
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
 import { generateTimeSlots } from '@/utils/date';
+import { userStorage } from '@/storage';
 
 export default function Dashboard() {
   const reservationTimeSlots = generateTimeSlots(10, 23);
+  const user = userStorage.get();
 
   return (
     <>
-      {/* <Profile /> */}
-      <UnauthenticateProfile />
+      {user ? <Profile /> : <UnauthenticateProfile />}
       <RoomNumberContainer />
       <DateDisplay />
       {reservationTimeSlots.map((times, index) => (
