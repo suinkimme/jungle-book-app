@@ -5,9 +5,11 @@ export default function AuthCallback() {
   const { fetchGithubAccessToken } = useGithubLogin();
 
   useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get('code');
-    if (code) {
-      fetchGithubAccessToken(code);
+    const { code, state } = Object.fromEntries(
+      new URLSearchParams(window.location.search),
+    );
+    if (code && state) {
+      fetchGithubAccessToken(code, state);
     }
   }, []);
 

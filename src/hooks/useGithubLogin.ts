@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userStorage } from '@/storage';
 
 export const useGithubLogin = () => {
   const navigate = useNavigate();
@@ -16,22 +17,25 @@ export const useGithubLogin = () => {
     window.location.href = githubUrl;
   }, []);
 
-  const fetchGithubAccessToken = useCallback(async (code: string) => {
-    try {
-      const response = await fetch('https://coachroom.duckdns.org/api/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code }),
-      });
+  const fetchGithubAccessToken = useCallback(
+    async (code: string, state: string) => {
+      try {
+        const response = await fetch('https://coachroom.duckdns.org/api/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code, state }),
+        });
 
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      navigate('/');
-    }
-  }, []);
+        const data = await response.json();
+        userStorage.set(data.access_token);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        navigate('/');
+      }
+    },
+    [],
+  );
 
   return { handleGitHubLogin, fetchGithubAccessToken };
 };
