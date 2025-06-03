@@ -1,4 +1,5 @@
 import { Profile } from '@/components/common/profile';
+import { UnauthenticateProfile } from '@/components/common/unauthenticate-profile';
 import { RoomNumberContainer } from '@/components/common/room-number-container';
 import { DateDisplay } from '@/components/common/date-display';
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
@@ -9,7 +10,8 @@ export default function Dashboard() {
 
   return (
     <>
-      <Profile />
+      {/* <Profile /> */}
+      <UnauthenticateProfile />
       <RoomNumberContainer />
       <DateDisplay />
       {reservationTimeSlots.map((times, index) => (
