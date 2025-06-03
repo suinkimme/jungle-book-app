@@ -1,9 +1,24 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PersonIcon } from '@radix-ui/react-icons';
 
+const githubLogin = () => {
+  const clientId = import.meta.env.VITE_GITHUB_CLIENT_ID;
+  const redirectUri = encodeURIComponent(
+    import.meta.env.VITE_GITHUB_REDIRECT_URI,
+  );
+  const state = crypto.randomUUID();
+
+  const githubUrl = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}`;
+
+  window.location.href = githubUrl;
+};
+
 export function UnauthenticateProfile() {
   return (
-    <div className="flex items-center gap-2 px-6 py-9" onClick={() => {}}>
+    <div
+      className="flex items-center gap-2 px-6 py-9 cursor-pointer"
+      onClick={githubLogin}
+    >
       <Avatar className="size-15">
         <AvatarImage src="" />
         <AvatarFallback>
