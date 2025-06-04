@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
-import { Profile } from '@/components/common/profile';
-import { UnauthenticateProfile } from '@/components/common/unauthenticate-profile';
+import { ProfileSwitcher } from '@/components/profile-switcher';
 import { RoomNumberContainer } from '@/components/common/room-number-container';
 import { DateDisplay } from '@/components/common/date-display';
 import { ReservationTimeList } from '@/components/common/reservation-time-list';
@@ -14,7 +13,7 @@ export default function Dashboard() {
 
   return (
     <>
-      {user ? <Profile /> : <UnauthenticateProfile />}
+      <ProfileSwitcher />
       <RoomNumberContainer />
       <DateDisplay />
       <ReservationTimeList />
