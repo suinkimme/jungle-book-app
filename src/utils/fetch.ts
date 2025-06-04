@@ -1,4 +1,5 @@
 import { userStorage } from '@/storage';
+import { BASE_URL } from '@/constants';
 
 const getAuthHeader = (storage: typeof userStorage) => {
   const token = storage.get();
@@ -13,7 +14,7 @@ const _fetch = async (
   storage: typeof userStorage,
 ) => {
   const authHeader = getAuthHeader(storage) || {};
-  const response = await fetch(url, {
+  const response = await fetch(`${BASE_URL}${url}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
