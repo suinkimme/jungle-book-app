@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import type { IRoom } from '@/types';
 import { userStorage } from '@/storage';
 
-export const useRoom = () => {
+export const useRooms = () => {
   const [rooms, setRooms] = useState<IRoom[]>([]);
 
   const fetchRoomList = useCallback(async () => {

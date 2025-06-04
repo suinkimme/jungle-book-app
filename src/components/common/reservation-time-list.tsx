@@ -1,15 +1,14 @@
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
 
 import { formatHour } from '@/utils/date';
-import { useRoom } from '@/hooks';
+import { useRooms } from '@/hooks';
 
 export const ReservationTimeList = () => {
-  const { getRooms } = useRoom();
-  const rooms = getRooms();
+  const { getRooms } = useRooms();
 
   return (
     <>
-      {rooms.map((room, index) => (
+      {getRooms.map(room => (
         <ReservationTimeItem
           key={room.room_id}
           start={formatHour(room.start_hour)}
