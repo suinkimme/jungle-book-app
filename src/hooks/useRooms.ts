@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { IRoom } from '@/types';
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import type { IRoom } from '@/types';
 import { userStorage } from '@/storage';
 
 export const useRoom = () => {
   const [rooms, setRooms] = useState<IRoom[]>([]);
 
-  const fetchRoomList = async () => {
+  const fetchRoomList = useCallback(async () => {
     try {
       const response = await fetch('https://coachroom.duckdns.org/api/room', {
         headers: {
@@ -17,11 +17,11 @@ export const useRoom = () => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, []);
 
-  const getRooms = () => {
+  const getRooms = useMemo(() => {
     return [...rooms];
-  };
+  }, [rooms]);
 
   useEffect(() => {
     fetchRoomList();
