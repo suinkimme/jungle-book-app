@@ -12,6 +12,7 @@ export const useRooms = () => {
       const response = await getRoomsApi();
       setRooms(response);
     } catch (error) {
+      // TODO: 전역으로 에러핸들링해보기
       console.error(error);
     }
   }, []);
