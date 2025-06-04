@@ -27,6 +27,7 @@ export const useGithubLogin = () => {
         });
 
         const data = await response.json();
+        console.log(data);
         userStorage.set(data.access_token);
       } catch (error) {
         console.error(error);

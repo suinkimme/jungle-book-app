@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
+
 import { Profile } from '@/components/common/profile';
 import { UnauthenticateProfile } from '@/components/common/unauthenticate-profile';
 import { RoomNumberContainer } from '@/components/common/room-number-container';
 import { DateDisplay } from '@/components/common/date-display';
-import { ReservationTimeItem } from '@/components/common/reservation-time-item';
+import { ReservationTimeList } from '@/components/common/reservation-time-list';
+
 import { generateTimeSlots } from '@/utils/date';
 import { userStorage } from '@/storage';
 
@@ -15,14 +18,7 @@ export default function Dashboard() {
       {user ? <Profile /> : <UnauthenticateProfile />}
       <RoomNumberContainer />
       <DateDisplay />
-      {reservationTimeSlots.map((times, index) => (
-        <ReservationTimeItem
-          key={index}
-          start={times[0]}
-          end={times[1]}
-          status={index % 3 === 0 ? 'available' : 'unavailable'}
-        />
-      ))}
+      <ReservationTimeList />
     </>
   );
 }
