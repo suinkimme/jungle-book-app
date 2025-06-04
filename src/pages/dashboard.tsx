@@ -10,7 +10,6 @@ import { generateTimeSlots } from '@/utils/date';
 import { userStorage } from '@/storage';
 
 export default function Dashboard() {
-  const reservationTimeSlots = generateTimeSlots(10, 23);
   const user = userStorage.get();
 
   return (
