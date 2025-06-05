@@ -5,7 +5,11 @@ import {
   ReservationCancelButton,
   UnavailableReservationButton,
 } from '@/components/common/reservation-button';
-import { UnpopularTag } from '@/components/common/popular-tag';
+import {
+  ReservationNameTag,
+  NotReservationNameTag,
+  PastReservationNameTag,
+} from '@/components/common/reservation-name-tag';
 
 import { useReservation } from '@/hooks';
 import { isPast, formatHour } from '@/utils';
@@ -75,7 +79,13 @@ export const ReservationTimeItem = ({
           <DividerHorizontalIcon className="w-3 text-muted-foreground" />
           <p className="text-lg font-semibold">{formatHour(endHour)}</p>
         </div>
-        <UnpopularTag />
+        {reservedBy ? (
+          <ReservationNameTag name={reservedBy.user_name} />
+        ) : isPastTime ? (
+          <PastReservationNameTag />
+        ) : (
+          <NotReservationNameTag />
+        )}
       </div>
       <ReservationButtonGroup
         isAvailable={status}
