@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getMyReservation } from '@/api';
+import { useReservationStore } from '@/stores/reservationStore';
 
 export const useMyReservation = () => {
-  const [reservationStatus, setReservationStatus] = useState<string | null>();
+  const { roomName, setRoomName } = useReservationStore();
 
   const fetchMyReservation = async () => {
     try {
       const response = await getMyReservation();
-      setReservationStatus(response.room_name);
+      setRoomName(response.room_name);
     } catch (error) {
       console.error(error);
-      setReservationStatus(error.message);
-      return null;
+      setRoomName(null);
     }
   };
 
@@ -19,5 +19,5 @@ export const useMyReservation = () => {
     fetchMyReservation();
   }, []);
 
-  return { message: reservationStatus };
+  return { message: roomName, setRoomName };
 };

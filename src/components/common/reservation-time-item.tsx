@@ -11,6 +11,7 @@ interface IReservationTimeItem {
   start: string;
   end: string;
   status: 'available' | 'unavailable';
+  roomName: string;
 }
 
 export const ReservationTimeItem = ({
@@ -18,6 +19,7 @@ export const ReservationTimeItem = ({
   start,
   end,
   status,
+  roomName,
 }: IReservationTimeItem) => {
   const { handleReservation, handleCancel } = useReservation();
 
@@ -33,7 +35,7 @@ export const ReservationTimeItem = ({
       </div>
       {status === 'available' ? (
         <ReservationButton
-          handleReservation={() => handleReservation(roomId)}
+          handleReservation={() => handleReservation(roomId, roomName)}
         />
       ) : (
         <UnavailableReservationButton
