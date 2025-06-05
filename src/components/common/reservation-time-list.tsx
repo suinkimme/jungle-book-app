@@ -1,14 +1,18 @@
+import { useEffect } from 'react';
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
-
 import { formatHour } from '@/utils/date';
-import { useRooms } from '@/hooks';
+import { useRoomStore } from '@/stores/roomStore';
 
 export const ReservationTimeList = () => {
-  const { getRooms } = useRooms();
+  const { getRooms, fetchRooms } = useRoomStore();
+
+  useEffect(() => {
+    fetchRooms();
+  }, []);
 
   return (
     <>
-      {getRooms.map(room => (
+      {getRooms().map(room => (
         <ReservationTimeItem
           key={room.room_id}
           roomId={room.room_id}

@@ -36,7 +36,9 @@ export const ReservationTimeItem = ({
           handleReservation={() => handleReservation(roomId)}
         />
       ) : (
-        <UnavailableReservationButton handleCancel={handleCancel} />
+        <UnavailableReservationButton
+          handleCancel={() => handleCancel(roomId)}
+        />
       )}
     </div>
   );

@@ -17,6 +17,17 @@ export const useRooms = () => {
     }
   }, []);
 
+  const updateRoomStatus = useCallback(
+    (roomId: number, isReserved: boolean) => {
+      setRooms(prevRooms =>
+        prevRooms.map(room =>
+          room.room_id === roomId ? { ...room, is_reserved: isReserved } : room,
+        ),
+      );
+    },
+    [],
+  );
+
   const getRooms = useMemo(() => {
     return [...rooms];
   }, [rooms]);
@@ -25,5 +36,5 @@ export const useRooms = () => {
     fetchRoomList();
   }, []);
 
-  return { getRooms };
+  return { getRooms, updateRoomStatus, refetch: fetchRoomList };
 };
