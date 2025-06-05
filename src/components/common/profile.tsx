@@ -22,8 +22,8 @@ export function Profile() {
   return (
     <div className="flex items-center gap-2 px-6 py-9">
       <Avatar className="size-15">
-        <AvatarImage src={avatarUrl} alt={name} />
-        <AvatarFallback>{name.slice(1, 3)}</AvatarFallback>
+        <AvatarImage src={avatarUrl || ''} alt={name || ''} />
+        <AvatarFallback>{name?.slice(1, 3) || ''}</AvatarFallback>
       </Avatar>
       <div className="px-2">
         <p className="text-lg font-bold">{name}</p>

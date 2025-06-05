@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { ProfileSwitcher } from '@/components/profile-switcher';
 import { RoomNumberContainer } from '@/components/common/room-number-container';
 import { DateDisplay } from '@/components/common/date-display';

@@ -6,11 +6,11 @@ export interface IRoom {
   end_hour: number;
   end_time: string;
   can_reserve: boolean;
-  reserved_by: IResercationBy | null;
+  reserved_by: IReservationBy | null;
   time_slots: Array<{ time_range: string }>;
 }
 
-export interface IResercationBy {
+export interface IReservationBy {
   created_at: string;
   login: string;
   reservation_id: number;

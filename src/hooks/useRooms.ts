@@ -1,7 +1,5 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
-import type { IRoom } from '@/types';
-import { userStorage } from '@/storage';
 import { getRooms as getRoomsApi } from '@/api';
 import { useRoomStore } from '@/stores/roomStore';
 

@@ -13,6 +13,7 @@ import {
 
 import { useReservation } from '@/hooks';
 import { isPast, formatHour } from '@/utils';
+import type { IReservationBy } from '@/types';
 
 interface IReservationTimeItem {
   roomId: number;
@@ -21,18 +22,20 @@ interface IReservationTimeItem {
   endHour: number;
   endTime: string;
   status: boolean;
-  reservedBy: IResercationBy | null;
+  reservedBy: IReservationBy | null;
 }
 
 interface IReservationButton {
+  roomId: number;
   isAvailable: boolean;
   isPastTime: boolean;
-  handleReservation: React.MouseEventHandler<HTMLButtonElement>;
-  handleCancel: React.MouseEventHandler<HTMLButtonElement>;
-  reservedBy: IResercationBy | null;
+  handleReservation: (roomId: number) => void;
+  handleCancel: () => void;
+  reservedBy: IReservationBy | null;
 }
 
 const ReservationButtonGroup = ({
+  roomId,
   isAvailable,
   isPastTime,
   handleReservation,
@@ -44,7 +47,12 @@ const ReservationButtonGroup = ({
   }
 
   if (isAvailable) {
-    return <ReservationButton handleReservation={handleReservation} />;
+    return (
+      <ReservationButton
+        roomId={roomId}
+        handleReservation={handleReservation}
+      />
+    );
   }
 
   if (!isAvailable) {
@@ -59,7 +67,6 @@ const ReservationButtonGroup = ({
 export const ReservationTimeItem = ({
   roomId,
   startHour,
-  startTime,
   endHour,
   endTime,
   status,
@@ -67,11 +74,11 @@ export const ReservationTimeItem = ({
 }: IReservationTimeItem) => {
   const { handleReservation, handleCancel } = useReservation();
 
-  const isPastTime = isPast(dayjs(endTime).toDate()) ? 'opacity-40' : '';
+  const isPastTime = isPast(dayjs(endTime).toDate());
 
   return (
     <div
-      className={`flex items-center justify-between px-6 py-5 ${isPastTime}`}
+      className={`flex items-center justify-between px-6 py-5 ${isPastTime ? 'opacity-40' : ''}`}
     >
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1">
@@ -88,10 +95,11 @@ export const ReservationTimeItem = ({
         )}
       </div>
       <ReservationButtonGroup
+        roomId={roomId}
         isAvailable={status}
         isPastTime={isPastTime}
-        handleReservation={() => handleReservation(roomId)}
-        handleCancel={() => handleCancel(roomId)}
+        handleReservation={handleReservation}
+        handleCancel={handleCancel}
         reservedBy={reservedBy}
       />
     </div>

@@ -1,11 +1,12 @@
 import { Button } from '@/components/ui/button';
-import { useReservation } from '@/hooks';
 
 interface IReservationButton {
+  roomId: number;
   handleReservation: (roomId: number) => void;
 }
 
 export const ReservationButton = ({
+  roomId,
   handleReservation,
 }: IReservationButton) => {
   return (
@@ -13,7 +14,7 @@ export const ReservationButton = ({
       size="sm"
       className="font-bold"
       variant="default"
-      onClick={handleReservation}
+      onClick={() => handleReservation(roomId)}
     >
       예약
     </Button>
