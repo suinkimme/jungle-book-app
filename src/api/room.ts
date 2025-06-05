@@ -33,3 +33,13 @@ export const cancelReservation = async () => {
     return null;
   }
 };
+
+export const getMyReservation = async () => {
+  try {
+    const response = await get(ENDPOINTS.GET_MY_RESERVATION);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

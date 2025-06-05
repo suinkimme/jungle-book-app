@@ -6,4 +6,5 @@ export const ENDPOINTS = {
   GET_ROOMS: '/api/room',
   RESERVATION_ROOM: '/api/room/reservation',
   CANCEL_RESERVATION: '/api/room/my_reservation',
+  GET_MY_RESERVATION: '/api/room/my_reservation',
 };
