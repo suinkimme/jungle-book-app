@@ -34,3 +34,11 @@ export const formatHour = (hour: number) => {
 export const isPast = (date: Date) => {
   return dayjs(date).isBefore(dayjs());
 };
+
+export const isBefore10AM = (date: Date) => {
+  return dayjs(date).isBefore(dayjs('10:00'));
+};
+
+export const isAfter4AM = (date: Date) => {
+  return dayjs(date).isAfter(dayjs('04:00'));
+};
