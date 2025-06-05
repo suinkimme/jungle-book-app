@@ -7,6 +7,7 @@ import {
 import { UnpopularTag } from '@/components/common/popular-tag';
 import { useReservation } from '@/hooks';
 import { useReservationStore } from '@/stores';
+import { formatHour } from '@/utils/date';
 
 interface IReservationTimeItem {
   roomId: number;
@@ -27,21 +28,8 @@ export const ReservationTimeItem = ({
   const {
     roomName: reservationRoomName,
     isRoomReserved,
-    addReservedRoom,
-    removeReservedRoom,
     getRoomStatus,
   } = useReservationStore();
-
-  const handleReservationClick = () => {
-    handleReservation(roomId, roomName);
-    addReservedRoom(roomId);
-  };
-
-  const handleCancelClick = () => {
-    handleCancel(roomId);
-    removeReservedRoom(roomId);
-  };
-
   const isReserved = isRoomReserved(roomId);
   const currentStatus = getRoomStatus(roomId, status);
 
@@ -49,17 +37,21 @@ export const ReservationTimeItem = ({
     <div className="flex items-center justify-between px-6 py-5">
       <div className="flex flex-col gap-1">
         <div className="flex items-center gap-1">
-          <p className="text-lg font-semibold">{start}</p>
+          <p className="text-lg font-semibold">{formatHour(start)}</p>
           <DividerHorizontalIcon className="w-3 text-muted-foreground" />
-          <p className="text-lg font-semibold">{end}</p>
+          <p className="text-lg font-semibold">{formatHour(end)}</p>
         </div>
         <UnpopularTag />
       </div>
 
       {roomName === reservationRoomName ? (
-        <ReservationCancelButton handleCancel={handleCancelClick} />
+        <ReservationCancelButton
+          handleCancel={() => handleCancel(roomId, start)}
+        />
       ) : currentStatus === 'available' && !isReserved ? (
-        <ReservationButton handleReservation={handleReservationClick} />
+        <ReservationButton
+          handleReservation={() => handleReservation(roomId, roomName)}
+        />
       ) : (
         <UnavailableReservationButton />
       )}

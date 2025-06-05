@@ -17,7 +17,7 @@ export const useReservation = () => {
 
     // 이미 예약한 시간이있는 경우
     if (roomName) {
-      toast.error('이미 예약한 방시간이습니다.');
+      toast.error('이미 예약한 시간이 있습니다.');
       return;
     }
 
@@ -36,15 +36,23 @@ export const useReservation = () => {
     }
   };
 
-  const handleCancel = async (roomId: number) => {
+  const handleCancel = async (roomId: number, start: string) => {
     if (!user) {
       toast.error('로그인 후 이용해주세요.');
       return;
     }
 
-    // 예약한 방이시간이 경우
     if (!roomName) {
-      toast.error('예약한 방이 시간이다.');
+      toast.error('예약한 시간입니다.');
+      return;
+    }
+
+    // 현재 시간과 예약 시작 시간 비교
+    const now = new Date();
+    const startTime = new Date(start);
+
+    if (now > startTime) {
+      toast.error('이미 시작된 예약은 취소할 수 없습니다.');
       return;
     }
 
