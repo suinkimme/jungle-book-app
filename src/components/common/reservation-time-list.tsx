@@ -4,6 +4,7 @@ import { useRooms } from '@/hooks/useRooms';
 
 export const ReservationTimeList = () => {
   const { getRooms } = useRooms();
+  console.log(getRooms());
 
   return (
     <>

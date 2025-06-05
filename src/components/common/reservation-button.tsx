@@ -20,13 +20,13 @@ export const ReservationButton = ({
   );
 };
 
-interface IUnavailableReservationButton {
+interface IReservationCancelButton {
   handleCancel: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const UnavailableReservationButton = ({
+export const ReservationCancelButton = ({
   handleCancel,
-}: IUnavailableReservationButton) => {
+}: IReservationCancelButton) => {
   return (
     <Button
       size="sm"
@@ -35,6 +35,14 @@ export const UnavailableReservationButton = ({
       onClick={handleCancel}
     >
       취소
+    </Button>
+  );
+};
+
+export const UnavailableReservationButton = () => {
+  return (
+    <Button size="sm" className="font-bold" variant="outline" disabled>
+      예약
     </Button>
   );
 };
