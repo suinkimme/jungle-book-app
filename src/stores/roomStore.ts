@@ -1,12 +1,11 @@
 import { create } from 'zustand';
 import type { IRoom } from '@/types';
-import { getRooms as getRoomsApi } from '@/api';
 
 interface IRoomStore {
   rooms: IRoom[];
   getRooms: () => IRoom[];
   updateRoomStatus: (roomId: number, isReserved: boolean) => void;
-  fetchRooms: () => Promise<void>;
+  setRooms: (rooms: IRoom[]) => void;
 }
 
 export const useRoomStore = create<IRoomStore>((set, get) => ({
@@ -19,12 +18,5 @@ export const useRoomStore = create<IRoomStore>((set, get) => ({
       ),
     }));
   },
-  fetchRooms: async () => {
-    try {
-      const response = await getRoomsApi();
-      set({ rooms: response });
-    } catch (error) {
-      console.error(error);
-    }
-  },
+  setRooms: rooms => set({ rooms }),
 }));

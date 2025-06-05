@@ -1,13 +1,11 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
-
-import type { IRoom } from '@/types';
-import { userStorage } from '@/storage';
+import { useEffect } from 'react';
 import { getRooms as getRoomsApi } from '@/api';
+import { useRoomStore } from '@/stores/roomStore';
 
 export const useRooms = () => {
-  const [rooms, setRooms] = useState<IRoom[]>([]);
+  const { getRooms, setRooms } = useRoomStore();
 
-  const fetchRoomList = useCallback(async () => {
+  const fetchRooms = async () => {
     try {
       const response = await getRoomsApi();
       setRooms(response);
@@ -15,26 +13,11 @@ export const useRooms = () => {
       // TODO: 전역으로 에러핸들링해보기
       console.error(error);
     }
-  }, []);
-
-  const updateRoomStatus = useCallback(
-    (roomId: number, isReserved: boolean) => {
-      setRooms(prevRooms =>
-        prevRooms.map(room =>
-          room.room_id === roomId ? { ...room, is_reserved: isReserved } : room,
-        ),
-      );
-    },
-    [],
-  );
-
-  const getRooms = useMemo(() => {
-    return [...rooms];
-  }, [rooms]);
+  };
 
   useEffect(() => {
-    fetchRoomList();
+    fetchRooms();
   }, []);
 
-  return { getRooms, updateRoomStatus, refetch: fetchRoomList };
+  return { getRooms, fetchRooms };
 };

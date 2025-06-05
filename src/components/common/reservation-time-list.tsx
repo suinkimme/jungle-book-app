@@ -1,14 +1,9 @@
-import { useEffect } from 'react';
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
 import { formatHour } from '@/utils/date';
-import { useRoomStore } from '@/stores/roomStore';
+import { useRooms } from '@/hooks/useRooms';
 
 export const ReservationTimeList = () => {
-  const { getRooms, fetchRooms } = useRoomStore();
-
-  useEffect(() => {
-    fetchRooms();
-  }, []);
+  const { getRooms } = useRooms();
 
   return (
     <>
