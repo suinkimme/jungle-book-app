@@ -23,6 +23,10 @@ const _fetch = async (
     },
   });
 
+  if (response.status === 403) {
+    storage.reset();
+  }
+
   return response.json();
 };
 
