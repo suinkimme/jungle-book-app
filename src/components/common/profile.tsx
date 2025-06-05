@@ -19,10 +19,6 @@ export function Profile() {
     );
   }
 
-  if (!name || !avatarUrl) {
-    return null;
-  }
-
   return (
     <div className="flex items-center gap-2 px-6 py-9">
       <Avatar className="size-15">
