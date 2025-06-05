@@ -11,8 +11,8 @@ import { formatHour } from '@/utils/date';
 
 interface IReservationTimeItem {
   roomId: number;
-  start: string;
-  end: string;
+  start: number;
+  end: number;
   status: 'available' | 'unavailable';
   roomName: string;
 }

@@ -36,7 +36,7 @@ export const useReservation = () => {
     }
   };
 
-  const handleCancel = async (roomId: number, start: string) => {
+  const handleCancel = async (roomId: number, start: number) => {
     if (!user) {
       toast.error('로그인 후 이용해주세요.');
       return;

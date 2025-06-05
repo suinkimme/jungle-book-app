@@ -35,7 +35,7 @@ export const useReservationStore = create<IReservationStore>(set => ({
       };
     }),
   isRoomReserved: roomId => {
-    const state = useReservationStore.getState();
+    const state: IReservationStore = useReservationStore.getState();
     return state.reservedRoomIds.has(roomId);
   },
   setRoomStatus: (roomId, status) =>
@@ -43,7 +43,7 @@ export const useReservationStore = create<IReservationStore>(set => ({
       roomStatuses: { ...state.roomStatuses, [roomId]: status },
     })),
   getRoomStatus: (roomId, initialStatus) => {
-    const state = useReservationStore.getState();
+    const state: IReservationStore = useReservationStore.getState();
     return state.roomStatuses[roomId] ?? initialStatus;
   },
 }));
