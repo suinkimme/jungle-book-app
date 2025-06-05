@@ -14,7 +14,7 @@ export const useRoomStore = create<IRoomStore>((set, get) => ({
   updateRoomStatus: (roomId, isReserved) => {
     set(state => ({
       rooms: state.rooms.map(room =>
-        room.room_id === roomId ? { ...room, is_reserved: isReserved } : room,
+        room.room_id === roomId ? { ...room, can_reserve: isReserved } : room,
       ),
     }));
   },

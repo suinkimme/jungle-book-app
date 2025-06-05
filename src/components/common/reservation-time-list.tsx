@@ -4,7 +4,6 @@ import { useRooms } from '@/hooks/useRooms';
 
 export const ReservationTimeList = () => {
   const { getRooms } = useRooms();
-  console.log(getRooms());
 
   return (
     <>
@@ -14,7 +13,7 @@ export const ReservationTimeList = () => {
           roomId={room.room_id}
           start={formatHour(room.start_hour)}
           end={formatHour(room.end_hour)}
-          status={room.is_reserved ? 'unavailable' : 'available'}
+          status={room.can_reserve ? 'available' : 'unavailable'}
           roomName={room.room_name}
         />
       ))}
