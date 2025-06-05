@@ -3,10 +3,10 @@ import { useState, useEffect, useMemo, useCallback } from 'react';
 import type { IRoom } from '@/types';
 import { userStorage } from '@/storage';
 import { getRooms as getRoomsApi } from '@/api';
+import { useRoomStore } from '@/stores/roomStore';
 
 export const useRooms = () => {
-  const [rooms, setRooms] = useState<IRoom[]>([]);
-
+  const { rooms, setRooms } = useRoomStore();
   const fetchRoomList = useCallback(async () => {
     try {
       const response = await getRoomsApi();
@@ -17,13 +17,9 @@ export const useRooms = () => {
     }
   }, []);
 
-  const getRooms = useMemo(() => {
-    return [...rooms];
-  }, [rooms]);
-
   useEffect(() => {
     fetchRoomList();
   }, []);
 
-  return { getRooms };
+  return { rooms };
 };

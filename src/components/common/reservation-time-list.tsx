@@ -4,11 +4,11 @@ import { formatHour } from '@/utils/date';
 import { useRooms } from '@/hooks';
 
 export const ReservationTimeList = () => {
-  const { getRooms } = useRooms();
+  const { rooms } = useRooms();
 
   return (
     <>
-      {getRooms.map(room => (
+      {rooms.map(room => (
         <ReservationTimeItem
           key={room.room_id}
           roomId={room.room_id}
