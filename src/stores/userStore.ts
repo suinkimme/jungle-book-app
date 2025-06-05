@@ -1,16 +1,17 @@
 import { create } from 'zustand';
 
 interface IUserStore {
-  id: number;
-  login: string;
-  name: string;
-  avatarUrl: string;
+  id: number | null;
+  login: string | null;
+  name: string | null;
+  avatarUrl: string | null;
+  setUser: (user: Omit<IUserStore, 'setUser'>) => void;
 }
 
 export const useUserStore = create<IUserStore>(set => ({
-  id: 0,
-  login: '',
-  name: '',
-  avatarUrl: '',
-  setUser: (user: IUserStore) => set(user),
+  id: null,
+  login: null,
+  name: null,
+  avatarUrl: null,
+  setUser: user => set(user),
 }));
