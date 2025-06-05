@@ -6,24 +6,30 @@ import { userStorage } from '@/storage';
 
 export const useReservation = () => {
   const { updateRoomStatus } = useRoomStore();
-  const { setRoomName } = useReservationStore();
+  const { roomName, setRoomName } = useReservationStore();
   const user = userStorage.get();
 
-  const handleReservation = async (roomId: number, roomName: string) => {
+  const handleReservation = async (roomId: number, newRoomName: string) => {
     if (!user) {
       toast.error('로그인 후 이용해주세요.');
       return;
     }
 
+    // 이미 예약한 방이 있는 경우
+    if (roomName) {
+      toast.error('이미 예약한 방이 있습니다.');
+      return;
+    }
+
     // 낙관적 업데이트
     updateRoomStatus(roomId, true);
-    setRoomName(roomName);
+    setRoomName(newRoomName);
 
     try {
       const response = await reservationRoom(roomId);
       toast.success(response.message);
     } catch (error) {
-      // 실패 시 원래 상태로 되돌림
+      // 실패 시 낙관적 업데이트 취소
       updateRoomStatus(roomId, false);
       setRoomName(null);
       toast.error('예약에 실패했습니다.');
@@ -36,6 +42,12 @@ export const useReservation = () => {
       return;
     }
 
+    // 예약한 방이 없는 경우
+    if (!roomName) {
+      toast.error('예약한 방이 없습니다.');
+      return;
+    }
+
     // 낙관적 업데이트
     updateRoomStatus(roomId, false);
     setRoomName(null);
@@ -44,8 +56,9 @@ export const useReservation = () => {
       const response = await cancelReservation();
       toast.success(response.message);
     } catch (error) {
-      // 실패 시 원래 상태로 되돌림
+      // 실패 시 낙관적 업데이트 취소
       updateRoomStatus(roomId, true);
+      setRoomName(roomName);
       toast.error('예약 취소에 실패했습니다.');
     }
   };
