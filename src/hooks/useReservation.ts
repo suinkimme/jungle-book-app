@@ -1,11 +1,18 @@
 import { reservationRoom, cancelReservation } from '@/api';
 import { toast } from 'sonner';
 import { useRoomStore } from '@/stores/roomStore';
+import { userStorage } from '@/storage';
 
 export const useReservation = () => {
   const { updateRoomStatus } = useRoomStore();
+  const user = userStorage.get();
 
   const handleReservation = async (roomId: number) => {
+    if (!user) {
+      toast.error('로그인 후 이용해주세요.');
+      return;
+    }
+
     // 낙관적 업데이트
     updateRoomStatus(roomId, true);
 
@@ -20,6 +27,11 @@ export const useReservation = () => {
   };
 
   const handleCancel = async (roomId: number) => {
+    if (!user) {
+      toast.error('로그인 후 이용해주세요.');
+      return;
+    }
+
     // 낙관적 업데이트
     updateRoomStatus(roomId, false);
 
