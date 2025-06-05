@@ -23,11 +23,13 @@ const _fetch = async (
     },
   });
 
+  const responseJson = response.json();
+
   if (response.status === 403) {
     storage.reset();
   }
 
-  return response.json();
+  return responseJson;
 };
 
 export const post = async <T>(
