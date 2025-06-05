@@ -1,7 +1,11 @@
 import { Button } from '@/components/ui/button';
 import { useReservation } from '@/hooks';
 
-export const ReservationButton = () => {
+interface IReservationButton {
+  roomId: number;
+}
+
+export const ReservationButton = ({ roomId }: IReservationButton) => {
   const { handleReservation } = useReservation();
 
   return (
@@ -9,7 +13,7 @@ export const ReservationButton = () => {
       size="sm"
       className="font-bold"
       variant="default"
-      onClick={() => handleReservation(1)}
+      onClick={() => handleReservation(roomId)}
     >
       예약
     </Button>

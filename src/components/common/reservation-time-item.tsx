@@ -6,12 +6,14 @@ import {
 import { UnpopularTag } from '@/components/common/popular-tag';
 
 interface IReservationTimeItem {
+  roomId: number;
   start: string;
   end: string;
   status: 'available' | 'unavailable';
 }
 
 export const ReservationTimeItem = ({
+  roomId,
   start,
   end,
   status,
@@ -27,7 +29,7 @@ export const ReservationTimeItem = ({
         <UnpopularTag />
       </div>
       {status === 'available' ? (
-        <ReservationButton />
+        <ReservationButton roomId={roomId} />
       ) : (
         <UnavailableReservationButton />
       )}

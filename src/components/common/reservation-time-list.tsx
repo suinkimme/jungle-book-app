@@ -11,6 +11,7 @@ export const ReservationTimeList = () => {
       {getRooms.map(room => (
         <ReservationTimeItem
           key={room.room_id}
+          roomId={room.room_id}
           start={formatHour(room.start_hour)}
           end={formatHour(room.end_hour)}
           status={room.is_reserved ? 'unavailable' : 'available'}
