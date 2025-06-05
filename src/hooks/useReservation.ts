@@ -15,9 +15,9 @@ export const useReservation = () => {
       return;
     }
 
-    // 이미 예약한 방이 있는 경우
+    // 이미 예약한 시간이 있는 경우
     if (roomName) {
-      toast.error('이미 예약한 방이 있습니다.');
+      toast.error('이미 예약한 시간이 있습니다.');
       return;
     }
 
@@ -42,9 +42,9 @@ export const useReservation = () => {
       return;
     }
 
-    // 예약한 방이 없는 경우
+    // 예약한 시간이 없는 경우
     if (!roomName) {
-      toast.error('예약한 방이 없습니다.');
+      toast.error('예약한 시간이 없습니다.');
       return;
     }
 
