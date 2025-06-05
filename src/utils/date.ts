@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 export const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
 export const formatDateWithWeekday = (date: Date) => {
@@ -27,4 +29,8 @@ export const formatHour = (hour: number) => {
   } else {
     return `오후 ${hour - 12}:00`;
   }
+};
+
+export const isPast = (date: Date) => {
+  return dayjs(date).isBefore(dayjs());
 };

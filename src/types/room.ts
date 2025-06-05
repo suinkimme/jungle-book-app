@@ -6,6 +6,16 @@ export interface IRoom {
   end_hour: number;
   end_time: string;
   can_reserve: boolean;
-  reserved_by: string | null;
+  reserved_by: IResercationBy | null;
   time_slots: Array<{ time_range: string }>;
+}
+
+export interface IResercationBy {
+  created_at: string;
+  login: string;
+  reservation_id: number;
+  room_id: number;
+  room_name: string;
+  user_id: number;
+  user_name: string;
 }

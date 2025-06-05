@@ -1,6 +1,5 @@
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
 
-import { formatHour } from '@/utils/date';
 import { useRooms } from '@/hooks';
 
 export const ReservationTimeList = () => {
@@ -12,9 +11,12 @@ export const ReservationTimeList = () => {
         <ReservationTimeItem
           key={room.room_id}
           roomId={room.room_id}
-          start={formatHour(room.start_hour)}
-          end={formatHour(room.end_hour)}
-          status={room.can_reserve ? 'unavailable' : 'available'}
+          startHour={room.start_hour}
+          startTime={room.start_time}
+          endHour={room.end_hour}
+          endTime={room.end_time}
+          status={room.can_reserve}
+          reservedBy={room.reserved_by}
         />
       ))}
     </>

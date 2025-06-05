@@ -20,13 +20,21 @@ export const ReservationButton = ({
   );
 };
 
-interface IUnavailableReservationButton {
-  handleCancel: (roomId: number) => void;
+export const UnavailableReservationButton = () => {
+  return (
+    <Button size="sm" className="font-bold" variant="outline" disabled>
+      예약
+    </Button>
+  );
+};
+
+interface IReservationCancelButton {
+  handleCancel: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const UnavailableReservationButton = ({
+export const ReservationCancelButton = ({
   handleCancel,
-}: IUnavailableReservationButton) => {
+}: IReservationCancelButton) => {
   return (
     <Button
       size="sm"
