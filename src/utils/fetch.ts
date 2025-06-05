@@ -41,7 +41,7 @@ export const post = async <T>(
   );
 };
 
-export const get = async <T>(
+export const get = async (
   url: string,
   storage: typeof userStorage = userStorage,
 ) => {

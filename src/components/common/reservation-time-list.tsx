@@ -14,7 +14,7 @@ export const ReservationTimeList = () => {
           roomId={room.room_id}
           start={formatHour(room.start_hour)}
           end={formatHour(room.end_hour)}
-          status={room.is_reserved ? 'unavailable' : 'available'}
+          status={room.can_reserve ? 'unavailable' : 'available'}
         />
       ))}
     </>

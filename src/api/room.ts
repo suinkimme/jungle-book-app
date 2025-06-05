@@ -4,7 +4,8 @@ import type { IRoom } from '@/types';
 
 export const getRooms = async () => {
   try {
-    const response = await get<{ room_list: IRoom[] }>(ENDPOINTS.GET_ROOMS);
+    const response = await get(ENDPOINTS.GET_ROOMS);
+    console.log(response);
     return response.room_list;
   } catch (error) {
     console.error(error);
