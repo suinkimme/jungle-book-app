@@ -4,6 +4,7 @@ import {
   UnavailableReservationButton,
 } from '@/components/common/reservation-button';
 import { UnpopularTag } from '@/components/common/popular-tag';
+import { useReservation } from '@/hooks';
 
 interface IReservationTimeItem {
   roomId: number;
@@ -18,6 +19,8 @@ export const ReservationTimeItem = ({
   end,
   status,
 }: IReservationTimeItem) => {
+  const { handleReservation, handleCancel } = useReservation();
+
   return (
     <div className="flex items-center justify-between px-6 py-5">
       <div className="flex flex-col gap-1">
@@ -29,9 +32,11 @@ export const ReservationTimeItem = ({
         <UnpopularTag />
       </div>
       {status === 'available' ? (
-        <ReservationButton roomId={roomId} />
+        <ReservationButton
+          handleReservation={() => handleReservation(roomId)}
+        />
       ) : (
-        <UnavailableReservationButton />
+        <UnavailableReservationButton handleCancel={handleCancel} />
       )}
     </div>
   );

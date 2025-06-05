@@ -1,4 +1,4 @@
-import { reservationRoom } from '@/api';
+import { reservationRoom, cancelReservation } from '@/api';
 import { toast } from 'sonner';
 
 export const useReservation = () => {
@@ -11,5 +11,14 @@ export const useReservation = () => {
     }
   };
 
-  return { handleReservation };
+  const handleCancel = async () => {
+    try {
+      const response = await cancelReservation();
+      toast.error(response.message);
+    } catch (error) {
+      console.log(error);
+      toast.error('예약 취소에 실패했습니다.');
+    }
+  };
+  return { handleReservation, handleCancel };
 };

@@ -53,3 +53,18 @@ export const get = async <T>(
     storage,
   );
 };
+
+export const del = async <T>(
+  url: string,
+  body: T,
+  storage: typeof userStorage = userStorage,
+) => {
+  return _fetch(
+    url,
+    {
+      method: 'DELETE',
+      body: JSON.stringify(body),
+    },
+    storage,
+  );
+};

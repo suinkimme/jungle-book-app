@@ -2,28 +2,39 @@ import { Button } from '@/components/ui/button';
 import { useReservation } from '@/hooks';
 
 interface IReservationButton {
-  roomId: number;
+  handleReservation: (roomId: number) => void;
 }
 
-export const ReservationButton = ({ roomId }: IReservationButton) => {
-  const { handleReservation } = useReservation();
-
+export const ReservationButton = ({
+  handleReservation,
+}: IReservationButton) => {
   return (
     <Button
       size="sm"
       className="font-bold"
       variant="default"
-      onClick={() => handleReservation(roomId)}
+      onClick={handleReservation}
     >
       예약
     </Button>
   );
 };
 
-export const UnavailableReservationButton = () => {
+interface IUnavailableReservationButton {
+  handleCancel: (roomId: number) => void;
+}
+
+export const UnavailableReservationButton = ({
+  handleCancel,
+}: IUnavailableReservationButton) => {
   return (
-    <Button size="sm" className="font-bold" variant="outline" disabled>
-      예약
+    <Button
+      size="sm"
+      className="font-bold"
+      variant="outline"
+      onClick={handleCancel}
+    >
+      취소
     </Button>
   );
 };

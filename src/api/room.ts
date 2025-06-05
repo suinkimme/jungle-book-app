@@ -1,4 +1,4 @@
-import { post, get } from '@/utils';
+import { post, get, del } from '@/utils';
 import { ENDPOINTS } from '@/constants';
 import type { IRoom } from '@/types';
 
@@ -17,6 +17,16 @@ export const reservationRoom = async (roomId: number) => {
     const response = await post(ENDPOINTS.RESERVATION_ROOM, {
       room_id: roomId,
     });
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const cancelReservation = async () => {
+  try {
+    const response = await del(ENDPOINTS.CANCEL_RESERVATION);
     return response;
   } catch (error) {
     console.error(error);
