@@ -1,3 +1,4 @@
+import type { MouseEventHandler } from 'react';
 import { Button } from '@/components/ui/button';
 
 interface IReservationButton {
@@ -44,6 +45,14 @@ export const ReservationCancelButton = ({
       onClick={handleCancel}
     >
       취소
+    </Button>
+  );
+};
+
+export const UnavailableReservationButton = () => {
+  return (
+    <Button size="sm" className="font-bold" variant="outline" disabled>
+      예약
     </Button>
   );
 };

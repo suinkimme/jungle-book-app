@@ -73,6 +73,13 @@ export const ReservationTimeItem = ({
   reservedBy,
 }: IReservationTimeItem) => {
   const { handleReservation, handleCancel } = useReservation();
+  const {
+    roomName: reservationRoomName,
+    isRoomReserved,
+    getRoomStatus,
+  } = useReservationStore();
+  const isReserved = isRoomReserved(roomId);
+  const currentStatus = getRoomStatus(roomId, status);
 
   const isPastTime = isPast(dayjs(endTime).toDate());
 

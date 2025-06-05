@@ -4,7 +4,6 @@ import { ENDPOINTS } from '@/constants';
 export const getRooms = async () => {
   try {
     const response = await get(ENDPOINTS.GET_ROOMS);
-    console.log(response);
     return response.room_list;
   } catch (error) {
     console.error(error);

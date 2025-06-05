@@ -16,7 +16,7 @@ export const useRooms = () => {
   }, []);
 
   useEffect(() => {
-    fetchRoomList();
+    fetchRooms();
   }, []);
 
   return { rooms };
