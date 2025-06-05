@@ -1,6 +1,9 @@
-import { ThemeProvider } from '@/components/theme-provider';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { ThemeProvider } from '@/components/theme-provider';
 import { AppLayout } from '@/components/layout/app-layout';
+import { Toaster } from '@/components/ui/sonner';
+
 import { Dashboard, AuthCallback } from '@/pages';
 
 export default function App() {
@@ -14,6 +17,7 @@ export default function App() {
           </Route>
         </Routes>
       </Router>
+      <Toaster />
     </ThemeProvider>
   );
 }
