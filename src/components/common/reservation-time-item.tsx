@@ -24,7 +24,26 @@ export const ReservationTimeItem = ({
   roomName,
 }: IReservationTimeItem) => {
   const { handleReservation, handleCancel } = useReservation();
-  const { roomName: reservationRoomName } = useReservationStore();
+  const {
+    roomName: reservationRoomName,
+    isRoomReserved,
+    addReservedRoom,
+    removeReservedRoom,
+    getRoomStatus,
+  } = useReservationStore();
+
+  const handleReservationClick = () => {
+    handleReservation(roomId, roomName);
+    addReservedRoom(roomId);
+  };
+
+  const handleCancelClick = () => {
+    handleCancel(roomId);
+    removeReservedRoom(roomId);
+  };
+
+  const isReserved = isRoomReserved(roomId);
+  const currentStatus = getRoomStatus(roomId, status);
 
   return (
     <div className="flex items-center justify-between px-6 py-5">
@@ -37,12 +56,10 @@ export const ReservationTimeItem = ({
         <UnpopularTag />
       </div>
 
-      {status === 'available' ? (
-        <ReservationButton
-          handleReservation={() => handleReservation(roomId, roomName)}
-        />
-      ) : roomName === reservationRoomName ? (
-        <ReservationCancelButton handleCancel={() => handleCancel(roomId)} />
+      {roomName === reservationRoomName ? (
+        <ReservationCancelButton handleCancel={handleCancelClick} />
+      ) : currentStatus === 'available' && !isReserved ? (
+        <ReservationButton handleReservation={handleReservationClick} />
       ) : (
         <UnavailableReservationButton />
       )}
