@@ -1,8 +1,8 @@
+import type { MouseEventHandler } from 'react';
 import { Button } from '@/components/ui/button';
-import { useReservation } from '@/hooks';
 
 interface IReservationButton {
-  handleReservation: (roomId: number) => void;
+  handleReservation: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const ReservationButton = ({
@@ -21,7 +21,7 @@ export const ReservationButton = ({
 };
 
 interface IUnavailableReservationButton {
-  handleCancel: (roomId: number) => void;
+  handleCancel: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const UnavailableReservationButton = ({
