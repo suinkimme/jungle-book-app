@@ -7,7 +7,7 @@ interface IUserStore {
   avatarUrl: string;
 }
 
-const useUserStore = create<IUserStore>(set => ({
+export const useUserStore = create<IUserStore>(set => ({
   id: 0,
   login: '',
   name: '',
