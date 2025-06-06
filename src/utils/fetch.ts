@@ -1,13 +1,18 @@
+import { userStorage } from '@/storage';
 import { BASE_URL } from '@/constants';
 
 const _fetch = async (url: string, options: RequestInit) => {
+  const token = await userStorage.get();
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
   const response = await fetch(`${BASE_URL}${url}`, {
     ...options,
-    credentials: 'include',
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
+    headers,
   });
   return response.json();
 };

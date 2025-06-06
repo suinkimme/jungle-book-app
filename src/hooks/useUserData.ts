@@ -16,7 +16,6 @@ export const useUserData = () => {
       };
       setUser(userData);
     } catch (error) {
-      console.error(error);
       setUser({
         id: null,
         login: null,
