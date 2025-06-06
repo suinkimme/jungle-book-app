@@ -17,7 +17,7 @@ export const useReservation = () => {
 
     try {
       const response = await reservationRoom(roomId);
-      toast.error(response.message);
+      toast.success(response.message);
     } catch (error) {
       toast.error('예약에 실패했습니다.');
     }
@@ -26,7 +26,7 @@ export const useReservation = () => {
   const handleCancel = debounce(async () => {
     try {
       const response = await cancelReservation();
-      toast.error(response.message);
+      toast.success(response.message);
     } catch (error) {
       console.log(error);
       toast.error('예약 취소에 실패했습니다.');
