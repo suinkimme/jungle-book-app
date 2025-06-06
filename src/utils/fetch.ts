@@ -3,9 +3,9 @@ import { BASE_URL } from '@/constants';
 
 const _fetch = async (url: string, options: RequestInit) => {
   const token = await userStorage.get();
-  const headers = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...(options.headers as Record<string, string>),
   };
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
