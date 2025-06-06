@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import { ReservationTimeItem } from '@/components/common/reservation-time-item';
 
 import { useRooms } from '@/hooks';
 
 export const ReservationTimeList = () => {
-  const { rooms } = useRooms();
+  const { rooms, fetchRoomList } = useRooms();
+
+  useEffect(() => {
+    fetchRoomList();
+  }, []);
 
   return (
     <>
