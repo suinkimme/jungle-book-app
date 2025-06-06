@@ -27,7 +27,7 @@ export const useReservation = () => {
     } catch (error) {
       toast.error('예약에 실패했습니다.');
     }
-  }, 150);
+  }, 400);
 
   const handleCancel = debounce(async () => {
     try {
@@ -39,7 +39,7 @@ export const useReservation = () => {
       console.log(error);
       toast.error('예약 취소에 실패했습니다.');
     }
-  }, 150);
+  }, 400);
 
   return { handleReservation, handleCancel };
 };
