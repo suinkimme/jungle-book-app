@@ -1,10 +1,10 @@
 import { Profile } from '@/components/common/profile';
 import { UnauthenticateProfile } from '@/components/common/unauthenticate-profile';
 
-import { userStorage } from '@/storage';
+import { useUserStore } from '@/stores';
 
 export const ProfileSwitcher = () => {
-  const user = userStorage.get();
+  const { name } = useUserStore();
 
-  return user ? <Profile /> : <UnauthenticateProfile />;
+  return name ? <Profile /> : <UnauthenticateProfile />;
 };
