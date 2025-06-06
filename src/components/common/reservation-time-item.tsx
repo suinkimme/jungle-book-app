@@ -12,6 +12,7 @@ import {
 } from '@/components/common/reservation-name-tag';
 
 import { useReservation } from '@/hooks';
+import { useUserStore } from '@/stores';
 import { isPast, formatHour } from '@/utils';
 import type { IReservationBy } from '@/types';
 
@@ -32,6 +33,7 @@ interface IReservationButton {
   handleReservation: (roomId: number) => void;
   handleCancel: () => void;
   reservedBy: IReservationBy | null;
+  loginedId: string | null;
 }
 
 const ReservationButtonGroup = ({
@@ -41,6 +43,7 @@ const ReservationButtonGroup = ({
   handleReservation,
   handleCancel,
   reservedBy,
+  loginedId,
 }: IReservationButton) => {
   if (isPastTime) {
     return <UnavailableReservationButton />;
@@ -56,7 +59,7 @@ const ReservationButtonGroup = ({
   }
 
   if (!isAvailable) {
-    if (reservedBy !== null) {
+    if (reservedBy !== null && reservedBy.login === loginedId) {
       return <ReservationCancelButton handleCancel={handleCancel} />;
     }
 
@@ -73,6 +76,7 @@ export const ReservationTimeItem = ({
   reservedBy,
 }: IReservationTimeItem) => {
   const { handleReservation, handleCancel } = useReservation();
+  const { login } = useUserStore();
 
   const isPastTime = isPast(dayjs(endTime).toDate());
 
@@ -101,6 +105,7 @@ export const ReservationTimeItem = ({
         handleReservation={handleReservation}
         handleCancel={handleCancel}
         reservedBy={reservedBy}
+        loginedId={login}
       />
     </div>
   );
