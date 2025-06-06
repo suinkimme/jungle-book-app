@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { getRooms as getRoomsApi } from '@/api';
 import { useRoomStore } from '@/stores/roomStore';
