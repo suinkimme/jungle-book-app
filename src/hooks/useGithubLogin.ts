@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { userStorage } from '@/storage';
 import { login } from '@/api';
 
 export const useGithubLogin = () => {
@@ -22,8 +21,7 @@ export const useGithubLogin = () => {
   const fetchGithubAccessToken = useCallback(
     async (code: string, state: string) => {
       try {
-        const response = await login(code, state);
-        userStorage.set(response.access_token);
+        await login(code, state);
       } catch (error) {
         console.error(error);
       } finally {
