@@ -8,7 +8,7 @@ const _fetch = async (url: string, options: RequestInit) => {
     ...options.headers,
   };
   if (token) {
-    headers.Authorization = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${token}`;
   }
   const response = await fetch(`${BASE_URL}${url}`, {
     ...options,
